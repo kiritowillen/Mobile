@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "984473810446",
+    "project_id": "wallet-c220c",
+    "storage_bucket": "wallet-c220c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984473810446:android:fdba5e3abf1262d5a62e5f",
+        "android_client_info": {
+          "package_name": "com.example.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgpf9g60Zkv4h2uq85FyEWE5tawmyleok"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
