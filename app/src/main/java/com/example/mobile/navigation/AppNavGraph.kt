@@ -39,6 +39,7 @@ fun AppNavGraph(
     trasazioniRepository:TransazioniRepository,
     managerScambioValuta: ManagerScambioValuta,
     transazioniViewModel : TransazioniViewModel,
+    onLogOff: () -> Unit,
 ) {
     //questo blocco di cose serve a gestire il cambio del valore CurrentScreen nel NavigationViewModel
     val navBackStackEntry = navigator.navController.currentBackStackEntryAsState()
@@ -73,6 +74,7 @@ fun AppNavGraph(
                     managerScambioValuta = managerScambioValuta,
                     displayViewModel = displayViewModel,
                     transazioniViewModel = transazioniViewModel,
+                    onLogOff = onLogOff,
                 )
             }
             composable(Screen.Transazioni.route) { TransazioniScreen(

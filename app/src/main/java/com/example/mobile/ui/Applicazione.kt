@@ -32,7 +32,7 @@ import com.example.mobile.ui.components.TopBar
 @Composable
 fun Applicazione(
     modifier: Modifier = Modifier,
-
+    onLogout: () -> Unit,
 ) {
     val navController = rememberNavController()
     val navigator = Navigator(navController)
@@ -69,6 +69,7 @@ fun Applicazione(
             trasazioniRepository = transazioniRepository,// passo intero viewModel per interagire con file interni
             managerScambioValuta=managerScambioValuta,
             transazioniViewModel = transazioniViewModel,
+            onLogOff = onLogout,//funzione di logout legata all'ExternalNavGraph
         )
         BottomBar(
             Modifier.weight(0.10f),

@@ -17,6 +17,7 @@ import com.example.mobile.ManagerScambioValuta
 import com.example.mobile.TransazioniRepository
 import com.example.mobile.TransazioniViewModel
 import com.example.mobile.navigation.Navigator
+import com.example.mobile.ui.components.BottoneLogOff
 import com.example.mobile.ui.components.ContenitoreTransazioni
 import com.example.mobile.ui.components.ContenitoreTrasferimentoFondi
 import com.example.mobile.ui.components.ContenitoreMenuTenda
@@ -32,6 +33,7 @@ fun ImpostazioniScreen(
     transazioniRepository:TransazioniRepository,
     managerScambioValuta: ManagerScambioValuta,
     transazioniViewModel : TransazioniViewModel,
+    onLogOff: () -> Unit,
     ) {
     Box(
         modifier = modifier
@@ -54,6 +56,14 @@ fun ImpostazioniScreen(
                 transazioniRepository = transazioniRepository,
                 transazioniViewModel=transazioniViewModel,
             )
+
+            BottoneLogOff (
+                modifier = Modifier
+                    .weight(0.1f)
+                    .padding(horizontal = paddingHorizontal, vertical = paddingVertical
+                    ),
+                ){
+            }
 
             ContenitoreTrasferimentoFondi(
                 modifier = Modifier
