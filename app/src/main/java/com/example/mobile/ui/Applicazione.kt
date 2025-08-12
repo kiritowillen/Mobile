@@ -1,5 +1,6 @@
 package com.example.mobile.ui
 
+import android.util.Log
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,6 +21,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.mobile.CassaViewModel
 import com.example.mobile.DisplayViewModel
+import com.example.mobile.FirebaseService
 import com.example.mobile.ManagerScambioValuta
 import com.example.mobile.NavigationViewModel
 import com.example.mobile.TransazioniRepository
@@ -31,8 +33,8 @@ import com.example.mobile.ui.components.TopBar
 
 @Composable
 fun Applicazione(
-    modifier: Modifier = Modifier,
     onLogout: () -> Unit,
+    firebaseService: FirebaseService,
 ) {
     val navController = rememberNavController()
     val navigator = Navigator(navController)
@@ -45,6 +47,21 @@ fun Applicazione(
     val transazioniRepository = remember { TransazioniRepository(context) }
     val managerScambioValuta : ManagerScambioValuta = ManagerScambioValuta();
     val transazioniViewModel : TransazioniViewModel = TransazioniViewModel(transazioniRepository);
+
+    val totaleLocale = transazioniRepository.conteggioTransazioniTotale()
+    val totaleOnlineState = firebaseService.nTransazioni.collectAsState()
+    val totaleOnline = totaleOnlineState.value
+    Log.w("Debug", "totale lcoale : ${totaleLocale}")
+    Log.w("Debug", "totale ONline : ${totaleOnline}")
+    if (totaleOnline > totaleLocale.toDouble()) {
+        Log.w("Debug", "dentro funzione")
+        firebaseService.getAllTransactions { transazioniNullable ->
+            val transazioni = transazioniNullable ?: emptyList()
+            transazioniRepository.salvaTransazioniPerMese(transazioni)
+        }
+    }
+    firebaseService.caricaIndirizziDaServer();
+
 
     Column(
         modifier = Modifier
@@ -70,6 +87,7 @@ fun Applicazione(
             managerScambioValuta=managerScambioValuta,
             transazioniViewModel = transazioniViewModel,
             onLogOff = onLogout,//funzione di logout legata all'ExternalNavGraph
+            firebaseService=firebaseService,
         )
         BottomBar(
             Modifier.weight(0.10f),

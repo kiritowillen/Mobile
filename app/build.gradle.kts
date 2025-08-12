@@ -55,20 +55,25 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation ("androidx.compose.ui:ui-graphics:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
-
     // Import the BoM for the Firebase platform
     implementation(platform("com.google.firebase:firebase-bom:34.0.0"))
-
+    // Firebase Firestore KTX
+    implementation("com.google.firebase:firebase-firestore-ktx:24.7.1")
+    // Altre dipendenze Firebase, es:
+    implementation("com.google.firebase:firebase-analytics-ktx:21.3.0")
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-auth")
-
     // Also add the dependencies for the Credential Manager libraries and specify their versions
     implementation("androidx.credentials:credentials:1.3.0")
     implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
     //coso deprecato che però penso fnzuoni
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+    //usato epr generare i qr code
+    implementation ("com.google.zxing:core:3.5.3")
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.mobile.CassaViewModel
 import com.example.mobile.DisplayViewModel
+import com.example.mobile.FirebaseService
 import com.example.mobile.ManagerScambioValuta
 import com.example.mobile.TransazioniRepository
 import com.example.mobile.TransazioniViewModel
@@ -34,6 +35,7 @@ fun ImpostazioniScreen(
     managerScambioValuta: ManagerScambioValuta,
     transazioniViewModel : TransazioniViewModel,
     onLogOff: () -> Unit,
+    firebaseService: FirebaseService,
     ) {
     Box(
         modifier = modifier
@@ -60,10 +62,10 @@ fun ImpostazioniScreen(
             BottoneLogOff (
                 modifier = Modifier
                     .weight(0.1f)
-                    .padding(horizontal = paddingHorizontal, vertical = paddingVertical
-                    ),
-                ){
-            }
+                    .padding(horizontal = paddingHorizontal, vertical = paddingVertical),
+                firebaseService=firebaseService,
+                onLogOff = onLogOff,
+                )
 
             ContenitoreTrasferimentoFondi(
                 modifier = Modifier

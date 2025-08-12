@@ -1,5 +1,6 @@
 package com.example.mobile.ui.screens.impostazioni
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,6 +17,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,6 +30,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.mobile.CassaViewModel
 import com.example.mobile.DisplayViewModel
+import com.example.mobile.FirebaseService
 import com.example.mobile.ManagerScambioValuta
 import com.example.mobile.R
 import com.example.mobile.TransazioniRepository
@@ -49,10 +52,10 @@ fun TrasferimentoScreen(
     displayViewModel: DisplayViewModel,
     transazioniRepository: TransazioniRepository,
     managerScambioValuta: ManagerScambioValuta,
-
+    firebaseService: FirebaseService,
     )
 {
-    val totalefondi:Double= 100000.0;
+    val fondiTotali = firebaseService.saldo.collectAsState()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -146,7 +149,7 @@ fun TrasferimentoScreen(
                     cassaViewModel=cassaViewModel,
                     managerScambioValuta = managerScambioValuta,
                     testo="Totale Fondi",
-                    valore=managerScambioValuta.converti(totalefondi,"SATS",managerScambioValuta.valutaSelezionata.value),
+                    valore=managerScambioValuta.converti(fondiTotali.value,"SATS",managerScambioValuta.valutaSelezionata.value),
                 )
 
                 Spacer(modifier = Modifier.height(8.dp)) // Spazio verticale
@@ -166,8 +169,9 @@ fun TrasferimentoScreen(
                 //pusalnte epr emulare pagamento
                 var importoDouble = importo.toDoubleOrNull() ?: 0.0
                 var importoInSats = managerScambioValuta.converti(importoDouble, managerScambioValuta.valutaSelezionata.value, "SATS")
-                var FondiInSats= managerScambioValuta.converti(totalefondi,"SATS",managerScambioValuta.valutaSelezionata.value)
-                val enabledBottone = importoInSats > 0 && importoInSats <= FondiInSats
+                var FondiInSats= managerScambioValuta.converti(fondiTotali.value,"SATS",managerScambioValuta.valutaSelezionata.value)
+                var fondiConvertiti = managerScambioValuta.converti(fondiTotali.value,"SATS",managerScambioValuta.valutaSelezionata.value)
+                val enabledBottone = importoDouble > 0 && importoDouble <= fondiConvertiti
 
                 BottonePagamentoUscita(
                     modifier = Modifier
@@ -178,6 +182,7 @@ fun TrasferimentoScreen(
                     transazioniRepository=transazioniRepository,
                     enabled = enabledBottone,
                     valore=importoInSats,
+                    firebaseService = firebaseService,
                 )
 
 

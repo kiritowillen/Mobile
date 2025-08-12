@@ -8,5 +8,7 @@ data class Transazione(
     val quantita: Double,// in sats
     val dataTimestamp: Long,
     val articoli: List<Articolo>,
-    val isEntrata: Boolean
+    val isEntrata: Boolean,
+    val from :String,
+    val to:String,
 )

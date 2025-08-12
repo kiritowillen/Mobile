@@ -40,9 +40,9 @@ fun DisplayTotale(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(testo)
-            val valore = managerScambioValuta.converti(valore,"SATS",managerScambioValuta.valutaSelezionata.value).toString();
+            //val valore = managerScambioValuta.converti(valore,"SATS",managerScambioValuta.valutaSelezionata.value).toString();
             Text(
-                text = valore, // <-- Mostra il valore reale
+                text = valore.toCustomString(), // <-- Mostra il valore reale
                 modifier = Modifier.padding(end = 8.dp)
             )
 

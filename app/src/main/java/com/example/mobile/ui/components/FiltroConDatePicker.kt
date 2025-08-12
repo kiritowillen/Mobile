@@ -54,7 +54,6 @@ fun FiltroConDatePicker(
             ) {
                 Text(text = "Da:", color = Color.White)
                 Spacer(modifier = Modifier.width(4.dp))
-
                 DatePickerField(
                     data = dataDa,
                     onClick = {
@@ -69,12 +68,9 @@ fun FiltroConDatePicker(
                         )
                     }
                 )
-
                 Spacer(modifier = Modifier.width(8.dp))
-
                 Text(text = "A:", color = Color.White)
                 Spacer(modifier = Modifier.width(4.dp))
-
                 DatePickerField(
                     data = dataA,
                     onClick = {
@@ -105,15 +101,6 @@ fun FiltroConDatePicker(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // LISTA TRANSAZIONI
-        Column {
-            listaTransazioni.forEach { transazione ->
-                Text(
-                    text = transazione.toString(),
-                    color = Color.White
-                )
-            }
-        }
     }
 }
 

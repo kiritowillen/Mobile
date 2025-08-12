@@ -40,7 +40,6 @@ import com.example.mobile.navigation.ExternalNavGraph
 class MainActivity : ComponentActivity() {
     //Utilizzo di Grafo esterno di pagine che mi permette di muovermi tra App e Login
     private val externalNavViewModel: ExternalNavigationViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

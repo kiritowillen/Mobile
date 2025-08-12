@@ -20,6 +20,7 @@ import com.example.mobile.ui.screens.tastiera.CarrelloScreen
 import com.example.mobile.ui.screens.tastiera.TastieraScreen
 import com.example.mobile.CassaViewModel
 import com.example.mobile.DisplayViewModel
+import com.example.mobile.FirebaseService
 import com.example.mobile.ManagerScambioValuta
 import com.example.mobile.TransazioniRepository
 import com.example.mobile.TransazioniViewModel
@@ -40,6 +41,7 @@ fun AppNavGraph(
     managerScambioValuta: ManagerScambioValuta,
     transazioniViewModel : TransazioniViewModel,
     onLogOff: () -> Unit,
+    firebaseService: FirebaseService,
 ) {
     //questo blocco di cose serve a gestire il cambio del valore CurrentScreen nel NavigationViewModel
     val navBackStackEntry = navigator.navController.currentBackStackEntryAsState()
@@ -75,6 +77,7 @@ fun AppNavGraph(
                     displayViewModel = displayViewModel,
                     transazioniViewModel = transazioniViewModel,
                     onLogOff = onLogOff,
+                    firebaseService=firebaseService,
                 )
             }
             composable(Screen.Transazioni.route) { TransazioniScreen(
@@ -85,7 +88,8 @@ fun AppNavGraph(
                 cassaViewModel=cassaViewModel,
                 displayViewModel = displayViewModel,
                 transazioniRepository = trasazioniRepository,
-                managerScambioValuta = managerScambioValuta
+                managerScambioValuta = managerScambioValuta,
+                firebaseService = firebaseService,
             ) }
             //route pagamento
             composable(Screen.Pagamento.route) {
@@ -94,7 +98,10 @@ fun AppNavGraph(
                     cassaViewModel=cassaViewModel,
                     displayViewModel = displayViewModel,
                     transazioniRepository = trasazioniRepository,
-                    managerScambioValuta = managerScambioValuta)
+                    managerScambioValuta = managerScambioValuta,
+                    firebaseService = firebaseService
+                )
+
             }
             //route tastiera
             composable(Screen.Tastiera.route) {

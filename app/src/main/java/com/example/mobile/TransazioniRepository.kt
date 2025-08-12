@@ -104,25 +104,15 @@ class TransazioniRepository(private val context: Context) {
     }
 
     fun aggiugiTransizione(
-        valore: Double,
-        prodotti: List<Articolo>,
-        isEntrata:Boolean
+        transazione: Transazione
     ){
         //generazione nome file da data
         val calendar = Calendar.getInstance()
         val anno = calendar.get(Calendar.YEAR)
         val mese = calendar.get(Calendar.MONTH) + 1 // 0 = Gennaio, quindi aggiungi 1
         val nome= String.format("%04d_%02d", anno, mese)
-        //creazione transazione
-        val nuvoaTransazione=Transazione(
-            id=UUID.randomUUID().toString(),
-            dataTimestamp= Date().time,
-            quantita = valore,
-            articoli = prodotti,
-            isEntrata = isEntrata,
-        )
         //caricamento transazione
-        salvaTransazioni(listOf(nuvoaTransazione),nome)
+        salvaTransazioni(listOf(transazione),nome)
     }
 
     fun getTransazioni(dataInizio: String, dataFine: String): List<Transazione> {
@@ -208,6 +198,64 @@ class TransazioniRepository(private val context: Context) {
 
         // Ordina la lista finale per dataTimestamp (opzionale)
         return risultato.sortedByDescending { it.dataTimestamp }
+    }
+
+    fun conteggioTransazioniTotale(): Int {
+        val files = ottieniTuttiIFiles()
+        var totale = 0
+        files.forEach { file ->
+            try {
+                val json = file.readText()
+                val transazioniNelFile = Json.decodeFromString<List<Transazione>>(json)
+                totale += transazioniNelFile.size
+            } catch (e: Exception) {
+                Log.e("Repo", "Errore nel leggere o decodificare ${file.name}: ${e.message}")
+            }
+        }
+        Log.d("Repo", "Totale transazioni locali: $totale")
+        return totale
+    }
+
+    fun salvaTransazioniPerMese(transazioni: List<Transazione>) {
+        // Raggruppa per anno e mese
+        val transazioniPerMese = transazioni.groupBy { tx ->
+            val cal = Calendar.getInstance()
+            cal.time = Date(tx.dataTimestamp)
+            String.format("%04d_%02d", cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1)
+        }
+
+        // Per ogni gruppo (mese), salva il file aggiornato
+        transazioniPerMese.forEach { (meseAnno, listaMese) ->
+            val file = File(cartellaTransazioni, meseAnno)
+
+            // Carica le transazioni esistenti (se esiste il file)
+            val transazioniEsistenti = if (file.exists()) {
+                try {
+                    val json = file.readText()
+                    Json.decodeFromString<List<Transazione>>(json)
+                } catch (e: Exception) {
+                    Log.e("Repo", "Errore parsing file $meseAnno: ${e.message}")
+                    emptyList()
+                }
+            } else {
+                emptyList()
+            }
+
+            // Unisci e rimuovi duplicati basandoti su id
+            val mappaTransazioni = mutableMapOf<String, Transazione>()
+            (transazioniEsistenti + listaMese).forEach { tx ->
+                mappaTransazioni[tx.id] = tx
+            }
+
+            // Ordina per dataTimestamp
+            val transazioniFinali = mappaTransazioni.values.sortedBy { it.dataTimestamp }
+
+            // Scrivi su file
+            val jsonFinale = Json.encodeToString(transazioniFinali)
+            file.writeText(jsonFinale)
+
+            Log.d("Repo", "Salvate ${transazioniFinali.size} transazioni in $meseAnno")
+        }
     }
 
 

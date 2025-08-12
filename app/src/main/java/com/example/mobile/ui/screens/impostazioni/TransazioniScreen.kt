@@ -12,8 +12,12 @@ import com.example.mobile.TransazioniViewModel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Text
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 
 import androidx.compose.ui.unit.dp
+import com.example.mobile.FirebaseService
+import com.example.mobile.generaQrCode
 import com.example.mobile.ui.components.FiltroConDatePicker
 import com.example.mobile.ui.components.TransazioniList
 
@@ -22,6 +26,7 @@ fun TransazioniScreen(
     modifier: Modifier=Modifier,
     transazioniViewModel : TransazioniViewModel,
 ) {
+
     Box(
         modifier = Modifier
             .fillMaxSize()

@@ -3,6 +3,10 @@ package com.example.mobile
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import android.util.Log
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class ManagerScambioValuta {
 
@@ -30,12 +34,32 @@ class ManagerScambioValuta {
     }
 
     fun converti(importo: Double, valutaOrigine: String, valutaDestinazione: String): Double {
+        val timestamp = SimpleDateFormat("HH:mm:ss.SSS", Locale.getDefault()).format(Date())
+
         val tassi = _conversionRates.value
+        Log.d("ConvertiFunzione", "[$timestamp] importo: $importo")
+        Log.d("ConvertiFunzione", "[$timestamp] valutaOrigine: $valutaOrigine")
+        Log.d("ConvertiFunzione", "[$timestamp] valutaDestinazione: $valutaDestinazione")
+        Log.d("ConvertiFunzione", "[$timestamp] tassi disponibili: $tassi")
+
         val tassoOrigine = tassi[valutaOrigine] ?: error("Valuta origine non trovata")
+        Log.d("ConvertiFunzione", "[$timestamp] tassoOrigine ($valutaOrigine): $tassoOrigine")
+
         val tassoDestinazione = tassi[valutaDestinazione] ?: error("Valuta destinazione non trovata")
+        Log.d("ConvertiFunzione", "[$timestamp] tassoDestinazione ($valutaDestinazione): $tassoDestinazione")
+
         val importoInSats = importo / tassoOrigine
-        return importoInSats * tassoDestinazione
+        Log.d("ConvertiFunzione", "[$timestamp] importoInSats: $importoInSats")
+
+        val risultato = importoInSats * tassoDestinazione
+        Log.d("ConvertiFunzione", "[$timestamp] risultato finale: $risultato")
+
+        Log.d("ConvertiFunzione", "Risultato raw: $risultato")
+        Log.d("ConvertiFunzione", "Risultato formattato: %.4f".format(risultato))
+
+        return risultato
     }
+
 
     fun convertiDaValutaCorrente(importo: Double, valutaOrigine: String): Double {
         return converti(importo, valutaOrigine, valutaSelezionata.value)

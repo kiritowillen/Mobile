@@ -7,12 +7,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.mobile.FirebaseService
 import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun BottoneLogOff(
     modifier: Modifier = Modifier,
-    onLogOff: () -> Unit
+    onLogOff: () -> Unit,
+    firebaseService: FirebaseService,
 ) {
     ContenitoreOmbreggiato(
         modifier = modifier
@@ -20,8 +22,7 @@ fun BottoneLogOff(
         Box(modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                FirebaseAuth.getInstance().signOut()
-                onLogOff()
+                firebaseService.signOut(onLogOff)
             }
             .padding(horizontal = 16.dp, vertical = 12.dp),
             contentAlignment = Alignment.Center,

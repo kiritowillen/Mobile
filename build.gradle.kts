@@ -4,6 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
 
-    // Plugin per Google Services
-    id("com.google.gms.google-services") version "4.4.3" apply false
+    // Plugin per Google Services aggiornato
+    id("com.google.gms.google-services") version "4.3.15" apply false
 }

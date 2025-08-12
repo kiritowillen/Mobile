@@ -2,6 +2,7 @@ package com.example.mobile.navigation
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -10,6 +11,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.mobile.ExternalNavigationViewModel
+import com.example.mobile.FirebaseService
 import com.example.mobile.ui.Applicazione
 import com.example.mobile.ui.screens.login.LoginScreen
 
@@ -21,6 +23,11 @@ fun ExternalNavGraph(
 ) {
     val isLoggedIn by externalnNavViewModel.isLoggedIn.collectAsState()
 
+    val activity = LocalContext.current as Activity
+    val firebaseService = FirebaseService(activity)
+    firebaseService.caricaSaldoIniziale()
+    firebaseService.getNumeroTotaleTransazioni()
+
     NavHost(
         navController = navController,
         startDestination = if (isLoggedIn) "home" else "login"
@@ -28,7 +35,7 @@ fun ExternalNavGraph(
         composable("login") {
             val activity = LocalContext.current as Activity
             LoginScreen(
-                activity = activity,
+                firebaseService = firebaseService,
                 onLoginSuccess = {
                     navController.navigate("home") {
                         popUpTo("login") { inclusive = true }
@@ -38,6 +45,7 @@ fun ExternalNavGraph(
         }
         composable("home") {
             Applicazione(
+                firebaseService = firebaseService,
                 onLogout = {
                     externalnNavViewModel.logout()
                     navController.navigate("login") {

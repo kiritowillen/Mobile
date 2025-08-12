@@ -14,6 +14,7 @@ import com.example.mobile.DisplayViewModel
 import com.example.mobile.EffettuaPagamentoIngresso
 import com.example.mobile.TransazioniRepository
 import com.example.mobile.EffettuaPagamentoUscita
+import com.example.mobile.FirebaseService
 
 
 @Composable
@@ -23,6 +24,7 @@ fun BottonePagamentoIngresso(
     displayViewModel: DisplayViewModel,
     transazioniRepository: TransazioniRepository,
     enabled: Boolean,
+    firebaseService: FirebaseService,
 ) {
     ContenitoreOmbreggiato(
         modifier = modifier
@@ -31,7 +33,7 @@ fun BottonePagamentoIngresso(
             onClick = {
 
                 Log.d("Debug", "onclick pre funzione")
-                EffettuaPagamentoIngresso(cassaViewModel=cassaViewModel, displayViewModel = displayViewModel, transazioniRepository = transazioniRepository)
+                EffettuaPagamentoIngresso(cassaViewModel=cassaViewModel, displayViewModel = displayViewModel, transazioniRepository = transazioniRepository, firebaseService = firebaseService)
                 Log.d("Debug", "onclick post funzione!")
             },
             modifier = Modifier.fillMaxSize(),
