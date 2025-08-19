@@ -1,4 +1,4 @@
-package com.example.mobile
+package com.example.mobile.funzioni
 
 import android.graphics.Bitmap
 import android.graphics.Color

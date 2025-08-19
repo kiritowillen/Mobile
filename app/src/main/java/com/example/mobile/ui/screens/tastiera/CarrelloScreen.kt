@@ -4,21 +4,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.example.mobile.CassaViewModel
-import androidx.compose.ui.draw.clip
 import com.example.mobile.DisplayViewModel
 import com.example.mobile.ManagerScambioValuta
-import com.example.mobile.ui.components.ArticoloBox
+import com.example.mobile.ui.screens.tastiera.components.ArticoloBox
 
 @Composable
 fun CarrelloScreen(
@@ -36,7 +33,7 @@ fun CarrelloScreen(
         modifier = modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(Color.Blue),
+            .background(MaterialTheme.colorScheme.background),
         horizontalAlignment = Alignment.CenterHorizontally,
         contentPadding = PaddingValues(top = spacing),
         verticalArrangement = Arrangement.spacedBy(spacing)

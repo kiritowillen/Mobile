@@ -1,7 +1,10 @@
 package com.example.mobile.navigation
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -30,6 +33,7 @@ Il NavGraph è diviso in 3 sezioni e mi dice quali sono le mie route disponibili
 che tra di loro non hanno memoria ovvero ogni volta che premo uno dei 3 pulsanti
 principali resetto lo stack.
 */
+@RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun AppNavGraph(
     modifier: Modifier = Modifier,
@@ -42,6 +46,8 @@ fun AppNavGraph(
     transazioniViewModel : TransazioniViewModel,
     onLogOff: () -> Unit,
     firebaseService: FirebaseService,
+    isDarkTheme: Boolean,
+    onThemeToggle: () -> Unit
 ) {
     //questo blocco di cose serve a gestire il cambio del valore CurrentScreen nel NavigationViewModel
     val navBackStackEntry = navigator.navController.currentBackStackEntryAsState()
@@ -60,7 +66,7 @@ fun AppNavGraph(
     Box(
         modifier = modifier
         .fillMaxWidth()
-        .background(Color.Magenta),
+        .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center
     ) {
         NavHost(
@@ -78,10 +84,13 @@ fun AppNavGraph(
                     transazioniViewModel = transazioniViewModel,
                     onLogOff = onLogOff,
                     firebaseService=firebaseService,
+                    isDarkTheme = isDarkTheme,
+                    onThemeToggle = onThemeToggle,
                 )
             }
             composable(Screen.Transazioni.route) { TransazioniScreen(
                 transazioniViewModel = transazioniViewModel,
+                managerScambioValuta = managerScambioValuta,
             ) }
             composable(Screen.Trasferimento.route) { TrasferimentoScreen(
                 navigator=navigator,
@@ -99,7 +108,7 @@ fun AppNavGraph(
                     displayViewModel = displayViewModel,
                     transazioniRepository = trasazioniRepository,
                     managerScambioValuta = managerScambioValuta,
-                    firebaseService = firebaseService
+                    firebaseService = firebaseService,
                 )
 
             }

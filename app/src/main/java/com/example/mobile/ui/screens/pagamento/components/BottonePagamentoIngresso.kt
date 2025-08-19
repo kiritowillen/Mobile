@@ -1,4 +1,4 @@
-package com.example.mobile.ui.components
+package com.example.mobile.ui.screens.pagamento.components
 
 import android.util.Log
 import androidx.compose.foundation.layout.*
@@ -8,13 +8,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.mobile.CassaViewModel
 import com.example.mobile.DisplayViewModel
-import com.example.mobile.EffettuaPagamentoIngresso
+import com.example.mobile.funzioni.EffettuaPagamentoIngresso
 import com.example.mobile.TransazioniRepository
-import com.example.mobile.EffettuaPagamentoUscita
 import com.example.mobile.FirebaseService
+import com.example.mobile.ui.components.ContenitoreOmbreggiato
 
 
 @Composable
@@ -31,7 +34,6 @@ fun BottonePagamentoIngresso(
     ) {
         Button(
             onClick = {
-
                 Log.d("Debug", "onclick pre funzione")
                 EffettuaPagamentoIngresso(cassaViewModel=cassaViewModel, displayViewModel = displayViewModel, transazioniRepository = transazioniRepository, firebaseService = firebaseService)
                 Log.d("Debug", "onclick post funzione!")
@@ -49,7 +51,11 @@ fun BottonePagamentoIngresso(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("Pagamento Effettuato")
+                Text(text="Pagamento Effettuato",
+                    style = TextStyle(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                ),)
             }
         }
     }

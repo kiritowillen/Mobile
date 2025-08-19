@@ -12,15 +12,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.example.mobile.R
 import com.example.mobile.data.Transazione
 import com.example.mobile.data.Articolo
+import com.example.mobile.funzioni.generaQrCode
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import com.google.firebase.firestore.AggregateSource
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 class FirebaseService(private val activity: Activity) {
 
@@ -63,11 +60,13 @@ class FirebaseService(private val activity: Activity) {
                 if (doc.exists()) {
                     _saldo.value = doc.getDouble("saldo") ?: 0.0
                     Log.d("Firebase", "Saldo iniziale caricato: ${_saldo.value}")
+                    callback?.invoke(true)
                 } else {
-                    Log.w("Firebase", "Documento utente non trovato, creazione nuovo utente con saldo 0")
-                    db.collection("utenti").document(uid)
-                        .set(mapOf("saldo" to 0.0))
-                    _saldo.value = 0.0
+                    Log.w("Firebase", "Documento utente non trovato, creazione nuovo utente")
+                    createUserDocument(uid) { success ->
+                        if (success) _saldo.value = 0.0
+                        callback?.invoke(success)
+                    }
                 }
                 callback?.invoke(true)
             }
@@ -187,25 +186,43 @@ class FirebaseService(private val activity: Activity) {
     }
 
     /** 🔹 Crea il documento utente con i campi iniziali */
+    /** 🔹 Crea il documento utente con i campi iniziali se non esiste */
     private fun createUserDocument(uid: String, callback: (Boolean) -> Unit) {
-        val userData = mapOf(
-            "bitcoin" to "wallet bitcoin",
-            "lightning" to "wallet lightning",
-            "saldo" to 0.0
-        )
+        Log.d("Firebase", "Creazione nuovo utente...")
 
-        db.collection("utenti").document(uid)
-            .set(userData, SetOptions.merge())
-            .addOnSuccessListener {
-                Log.d("Firebase", "Documento utente iniziale creato")
-                // Non creo la collezione transazioni fittizia
-                callback(true)
+        val userRef = db.collection("utenti").document(uid)
+
+        // Controlla se il documento esiste già
+        userRef.get()
+            .addOnSuccessListener { document ->
+                if (!document.exists()) {
+                    // Documento nuovo: crealo con tutti i campi iniziali
+                    val userData = mapOf(
+                        "bitcoin" to "wallet bitcoin",
+                        "lightning" to "wallet lightning",
+                        "saldo" to 0.0
+                    )
+                    userRef.set(userData)
+                        .addOnSuccessListener {
+                            Log.d("Firebase", "Documento utente iniziale creato")
+                            callback(true)
+                        }
+                        .addOnFailureListener {
+                            Log.d("Firebase", "Errore nella creazione del documento utente: ${it.message}")
+                            callback(false)
+                        }
+                } else {
+                    // Documento già esistente, non serve creare nulla
+                    Log.d("Firebase", "Utente già esistente")
+                    callback(true)
+                }
             }
             .addOnFailureListener {
-                Log.d("Firebase", "Errore nella creazione del documento utente: ${it.message}")
+                Log.d("Firebase", "Errore nel recupero del documento utente: ${it.message}")
                 callback(false)
             }
     }
+
 
     /** 🔹 Logout */
     fun signOut(onComplete: () -> Unit) {

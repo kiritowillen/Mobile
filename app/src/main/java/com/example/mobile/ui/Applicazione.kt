@@ -1,6 +1,8 @@
 package com.example.mobile.ui
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -31,10 +34,13 @@ import com.example.mobile.navigation.Navigator
 import com.example.mobile.ui.components.BottomBar
 import com.example.mobile.ui.components.TopBar
 
+@RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun Applicazione(
     onLogout: () -> Unit,
     firebaseService: FirebaseService,
+    isDarkTheme: Boolean,
+    onThemeToggle: () -> Unit
 ) {
     val navController = rememberNavController()
     val navigator = Navigator(navController)
@@ -63,37 +69,44 @@ fun Applicazione(
     firebaseService.caricaIndirizziDaServer();
 
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(WindowInsets.statusBars.asPaddingValues())
-            .background(Color.Cyan)
+            .background(MaterialTheme.colorScheme.background) // colore dello sfondo anche sotto la status bar
     ) {
-        TopBar(
-            Modifier.weight(0.08f),
-            navigator=navigator,
-            navViewModel = navigationViewModel, //passo intero viewmodel per interagire con navigatore
-            aggiornaTotale = displayViewModel::aggiornaTotale, //passo solo la funzione per aggiornare valore display
-            eliminaTutto=cassaViewModel::rimuoviTuttiProdotti, //passo solo funzione per rimuvoere tutti i prodotti
-
-        )
-        AppNavGraph(
-            Modifier.weight(0.82f),
-            navigator = navigator,
-            navViewModel = navigationViewModel,//passo intero viewmodel per interagire con navigatore
-            cassaViewModel =cassaViewModel, //passo intero viewmodel per interagire con cassa
-            displayViewModel=displayViewModel,//passo intero viewmodel per interagire con display,
-            trasazioniRepository = transazioniRepository,// passo intero viewModel per interagire con file interni
-            managerScambioValuta=managerScambioValuta,
-            transazioniViewModel = transazioniViewModel,
-            onLogOff = onLogout,//funzione di logout legata all'ExternalNavGraph
-            firebaseService=firebaseService,
-        )
-        BottomBar(
-            Modifier.weight(0.10f),
-            navigator=navigator,
-            navViewModel = navigationViewModel, //passo intero viewmodel per interagire con navigatore
-            transazioniViewModel = transazioniViewModel
-        )
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(WindowInsets.statusBars.asPaddingValues()) // padding status bar
+        ) {
+            TopBar(
+                Modifier.weight(0.06f),
+                navigator=navigator,
+                navViewModel = navigationViewModel,
+                aggiornaTotale = displayViewModel::aggiornaTotale,
+                eliminaTutto=cassaViewModel::rimuoviTuttiProdotti,
+            )
+            AppNavGraph(
+                Modifier.weight(0.84f),
+                navigator = navigator,
+                navViewModel = navigationViewModel,
+                cassaViewModel = cassaViewModel,
+                displayViewModel=displayViewModel,
+                trasazioniRepository = transazioniRepository,
+                managerScambioValuta=managerScambioValuta,
+                transazioniViewModel = transazioniViewModel,
+                onLogOff = onLogout,
+                firebaseService=firebaseService,
+                isDarkTheme = isDarkTheme,
+                onThemeToggle = onThemeToggle
+            )
+            BottomBar(
+                Modifier.weight(0.10f),
+                navigator=navigator,
+                navViewModel = navigationViewModel,
+                transazioniViewModel = transazioniViewModel
+            )
+        }
     }
+
 }

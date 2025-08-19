@@ -13,6 +13,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.mobile.CassaViewModel
 import androidx.compose.runtime.collectAsState // ✅ import corretto
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import com.example.mobile.DisplayViewModel
 import com.example.mobile.ManagerScambioValuta
 
@@ -35,20 +38,34 @@ fun ContenitoreMenuTenda(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
-                .background(Color.Red)
+                .background(MaterialTheme.colorScheme.primary)
                 .clickable { expanded = !expanded }
-                .padding(horizontal = 16.dp, vertical = 12.dp),
+                .padding(horizontal = 16.dp,),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = "Unità di misura")
+            Text(
+                color = MaterialTheme.colorScheme.onPrimary,
+                text = "Unità di misura",
+                style = TextStyle(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                ),
+            )
 
             Box(
                 modifier = Modifier.clickable { expanded = !expanded },
                 contentAlignment = Alignment.Center
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(text = valutaSelezionata)
+                    Text(
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        text = valutaSelezionata,
+                        style = TextStyle(
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 20.sp
+                        ),
+                    )
                     Icon(
                         imageVector = Icons.Default.ArrowDropDown,
                         contentDescription = "Menu"
@@ -69,7 +86,16 @@ fun ContenitoreMenuTenda(
 
 
                             },
-                            text = { Text(option) }
+                            text = {
+                                Text(
+                                    color = MaterialTheme.colorScheme.onPrimary,
+                                    text=option,
+                                    style = TextStyle(
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 20.sp
+                                    ),
+                                )
+                            }
                         )
                     }
                 }

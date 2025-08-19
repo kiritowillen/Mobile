@@ -23,20 +23,23 @@ import androidx.compose.ui.graphics.RectangleShape
 */
 @Composable
 fun ContenitoreOmbreggiato(
-    modifier: Modifier = Modifier,
+    modifier: Modifier,
     shape: Shape = RoundedCornerShape(15.dp),
-    content: @Composable BoxScope.() -> Unit
+    contentAlignment: Alignment = Alignment.Center,
+    content: @Composable BoxScope.() -> Unit,
+
 ) {
     Box(
-        modifier = modifier
+        modifier = modifier,
+        contentAlignment = contentAlignment
     ) {
         // Ombra bianca a sinistra
         Box(
             modifier = Modifier
-                .fillMaxHeight(0.97f)
-                .width(7.dp)
+                .fillMaxHeight(1f)
+                .width(8.dp)
                 .align(Alignment.CenterStart)
-                .offset(x = (-3).dp)
+                .offset(x = (-4).dp)
                 .background(
                     color = Color.White.copy(alpha = 0.9f),
                     shape = shape
@@ -46,10 +49,10 @@ fun ContenitoreOmbreggiato(
         // Ombra bianca sopra
         Box(
             modifier = Modifier
-                .height(6.5.dp)
-                .fillMaxWidth(0.98f)
+                .height(8.dp)
+                .fillMaxWidth(1f)
                 .align(Alignment.TopCenter)
-                .offset(y = (-3).dp)
+                .offset(y = (-4).dp)
                 .background(
                     color = Color.White.copy(alpha = 0.9f),
                     shape = shape
@@ -59,10 +62,10 @@ fun ContenitoreOmbreggiato(
         // Ombra nera a destra
         Box(
             modifier = Modifier
-                .fillMaxHeight(0.97f)
-                .width(7.dp)
+                .fillMaxHeight(0.99f)
+                .width(8.dp)
                 .align(Alignment.CenterEnd)
-                .offset(x = 2.dp)
+                .offset(x = 3.dp)
                 .background(
                     color = Color.Black.copy(alpha = 0.5f),
                     shape = shape
@@ -72,8 +75,8 @@ fun ContenitoreOmbreggiato(
         // Ombra nera sotto
         Box(
             modifier = Modifier
-                .fillMaxWidth(0.98f)
-                .height(7.dp)
+                .fillMaxWidth(0.99f)
+                .height(8.dp)
                 .align(Alignment.BottomCenter)
                 .offset(y = 3.dp)
                 .background(
@@ -87,6 +90,7 @@ fun ContenitoreOmbreggiato(
             modifier = Modifier
                 .fillMaxSize()
                 .clip(shape), // Applica lo stesso arrotondamento anche al contenuto
+            contentAlignment=contentAlignment,
             content = content
         )
     }

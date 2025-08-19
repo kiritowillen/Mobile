@@ -1,6 +1,8 @@
 package com.example.mobile
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -34,21 +36,31 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.example.mobile.ui.components.BottoneLogOff
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.navigation.compose.rememberNavController
 import com.example.mobile.navigation.ExternalNavGraph
+import com.example.mobile.ui.theme.MyAppTheme
 
+@RequiresApi(Build.VERSION_CODES.Q)
 class MainActivity : ComponentActivity() {
-    //Utilizzo di Grafo esterno di pagine che mi permette di muovermi tra App e Login
     private val externalNavViewModel: ExternalNavigationViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
         setContent {
-            val navController = rememberNavController()
-            ExternalNavGraph(
-                navController = navController,
-                externalnNavViewModel = externalNavViewModel
-            )
+            var isDarkTheme by remember { mutableStateOf(false) }
+            MyAppTheme(darkTheme = isDarkTheme) { // 👈 Qui avvolgi tutta la UI
+                val navController = rememberNavController()
+                ExternalNavGraph(
+                    navController = navController,
+                    externalnNavViewModel = externalNavViewModel,
+                    isDarkTheme = isDarkTheme,
+                    onThemeToggle = { isDarkTheme = !isDarkTheme }
+                )
+            }
         }
     }
 }

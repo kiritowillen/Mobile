@@ -12,6 +12,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.Image
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.draw.clip
@@ -23,7 +25,7 @@ import com.example.mobile.FirebaseService
 fun ContenitoreQR(
     modifier: Modifier,
     firebaseService: FirebaseService,
-    walletSelezionato: String
+    walletSelezionato: MutableState<String>
 ) {
 
     val bitcoinBitmap by firebaseService.bitcoinBitmap.collectAsState()
@@ -40,8 +42,8 @@ fun ContenitoreQR(
                 modifier = Modifier
                     .weight(0.83f)
                     .fillMaxWidth(0.95f)
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(Color.Blue)
+                    .clip(RoundedCornerShape(15.dp))
+                    .background(MaterialTheme.colorScheme.primary)
                     .align(Alignment.CenterHorizontally),
 
                 ) {
@@ -49,7 +51,7 @@ fun ContenitoreQR(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    val bitmap = when (walletSelezionato) {
+                    val bitmap = when (walletSelezionato.value) {
                         "bitcoin" -> bitcoinBitmap
                         "lightning" -> lightningBitmap
                         else -> null
@@ -75,27 +77,7 @@ fun ContenitoreQR(
                     .fillMaxWidth()
                     .padding(8.dp)
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f)
-                        .padding(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text("Copia")
-                    Text("Condividi")
-                }
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text((1..10).map { (0..9).random() }.joinToString(""))
-                }
+                CopyAndShareTexts(walletSelezionato=walletSelezionato)
             }
         }
     }

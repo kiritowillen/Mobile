@@ -6,18 +6,16 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mobile.CassaViewModel
 import com.example.mobile.DisplayViewModel
-import com.example.mobile.ui.components.Dispaly
-import com.example.mobile.ui.components.TastierinoNumerico
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.collectAsState
+import com.example.mobile.ui.screens.tastiera.components.Dispaly
+import com.example.mobile.ui.screens.tastiera.components.TastierinoNumerico
 import com.example.mobile.ManagerScambioValuta
+import com.example.mobile.ui.components.ContenitoreOmbreggiato
 
 @Composable
 fun TastieraScreen(
@@ -32,14 +30,15 @@ fun TastieraScreen(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.Blue),
+            .background(MaterialTheme.colorScheme.background),
         contentAlignment = Alignment.Center
     ) {
-        Box(
+        ContenitoreOmbreggiato(
             modifier = Modifier
                 .fillMaxWidth(0.95f) // 95% larghezza
-                .fillMaxHeight(0.95f) // 90% altezza
-                .background(Color.Red)
+                .fillMaxHeight(0.98f) // 90% altezza
+                //.background(MaterialTheme.colorScheme.surface)
+                //.clip(RoundedCornerShape(1.dp))
         ) {
             Column(
                 modifier = Modifier
@@ -49,7 +48,7 @@ fun TastieraScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight(0.15f) // 20% dell'altezza disponibile
-                        .background(Color.Yellow),
+                        .background(MaterialTheme.colorScheme.surface),
                     contentAlignment = Alignment.Center
                 ){
                     Dispaly(cassaViewModel,displayViewModel, managerScambioValuta = managerScambioValuta)
@@ -59,7 +58,7 @@ fun TastieraScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight() // occupa il resto della colonna (80%)
-                        .background(Color.Magenta)
+
                 ){
                     TastierinoNumerico(cassaViewModel=cassaViewModel,displayViewModel=displayViewModel, managerScambioValuta = managerScambioValuta)
                 }

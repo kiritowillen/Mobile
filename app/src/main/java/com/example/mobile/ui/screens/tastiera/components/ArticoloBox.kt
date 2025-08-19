@@ -1,26 +1,25 @@
-package com.example.mobile.ui.components
+package com.example.mobile.ui.screens.tastiera.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.draw.clip
 import com.example.mobile.data.Articolo
 import androidx.compose.material3.Text
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Icon
 import androidx.compose.ui.res.painterResource
 import com.example.mobile.R
-import androidx.compose.material3.Text
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import com.example.mobile.CassaViewModel
+import com.example.mobile.ui.components.ContenitoreOmbreggiato
 
 
 @Composable
@@ -32,12 +31,13 @@ fun ArticoloBox(
     articolo: Articolo,
     onEliminaClick: (Articolo) -> Unit
 ) {
-    Box(
+    ContenitoreOmbreggiato(
         modifier = modifier
             .fillMaxWidth(widthPercent)
             .height(height)
-            .clip(RoundedCornerShape(16.dp))
-            .background(Color.Green),
+            //.clip(RoundedCornerShape(2.dp))
+            .background(MaterialTheme.colorScheme.background),
+
         contentAlignment = Alignment.Center
     ) {
         Row(modifier = Modifier.fillMaxSize()) {
@@ -47,13 +47,13 @@ fun ArticoloBox(
                 modifier = Modifier
                     .fillMaxHeight()
                     .weight(0.2f)
-                    .background(Color.Red),
+                    .background(MaterialTheme.colorScheme.background),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.tag),
                     contentDescription = "icona",
-                    tint = Color.White,
+                    tint = MaterialTheme.colorScheme.onPrimary,
                     modifier = Modifier
                         .fillMaxWidth(0.6f)
                         .fillMaxHeight(0.6f)
@@ -65,7 +65,8 @@ fun ArticoloBox(
                 modifier = Modifier
                     .fillMaxHeight()
                     .weight(0.60f)
-                    .background(Color.Yellow)
+
+                    .background(MaterialTheme.colorScheme.background)
             ) {
                 BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
                     val density = LocalDensity.current
@@ -87,9 +88,12 @@ fun ArticoloBox(
                             contentAlignment = Alignment.CenterStart
                         ) {
                             Text(
+                                color = MaterialTheme.colorScheme.onPrimary,
                                 text = "Articolo: ${articolo.id}",
-                                color = Color.Black,
-                                fontSize = bigFontSize
+                                style = TextStyle(
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 20.sp
+                                ),
                             )
                         }
 
@@ -101,9 +105,12 @@ fun ArticoloBox(
                             contentAlignment = Alignment.CenterStart
                         ) {
                             Text(
+                                color = MaterialTheme.colorScheme.onPrimary,
                                 text = "Prezzo: ${articolo.prezzo} ${articolo.valuta}",
-                                color = Color.Black,
-                                fontSize = smallFontSize
+                                style = TextStyle(
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 12.sp
+                                ),
                             )
                         }
                     }
@@ -117,7 +124,7 @@ fun ArticoloBox(
                 modifier = Modifier
                     .fillMaxHeight()
                     .weight(0.2f)
-                    .background(Color.Magenta),
+                    .background(MaterialTheme.colorScheme.background),
                 contentAlignment = Alignment.Center
             ) {
                 IconButton(
@@ -129,7 +136,7 @@ fun ArticoloBox(
                     Icon(
                         painter = painterResource(id = R.drawable.bin),
                         contentDescription = "Elimina",
-                        tint = Color.White,
+                        tint = MaterialTheme.colorScheme.onPrimary,
                         modifier = Modifier.fillMaxSize()
                     )
                 }

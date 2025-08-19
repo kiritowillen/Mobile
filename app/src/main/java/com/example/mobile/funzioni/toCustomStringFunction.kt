@@ -1,4 +1,4 @@
-package com.example.mobile
+package com.example.mobile.funzioni
 
 //funzione per mostrare i numeri in maniera sesnsata
 

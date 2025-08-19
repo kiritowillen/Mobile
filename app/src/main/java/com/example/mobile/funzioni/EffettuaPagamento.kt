@@ -1,12 +1,16 @@
-package com.example.mobile
+package com.example.mobile.funzioni
 
 import android.util.Log
+import com.example.mobile.CassaViewModel
+import com.example.mobile.DisplayViewModel
+import com.example.mobile.FirebaseService
+import com.example.mobile.TransazioniRepository
 import com.example.mobile.data.Transazione
 import java.util.Calendar
 import java.util.Date
 import java.util.UUID
 
-fun EffettuaPagamentoIngresso(cassaViewModel: CassaViewModel,displayViewModel: DisplayViewModel,transazioniRepository: TransazioniRepository,firebaseService: FirebaseService){
+fun EffettuaPagamentoIngresso(cassaViewModel: CassaViewModel, displayViewModel: DisplayViewModel, transazioniRepository: TransazioniRepository, firebaseService: FirebaseService){
     if (cassaViewModel.totale.value > 0) {
         val calendar = Calendar.getInstance()
         val anno = calendar.get(Calendar.YEAR)
@@ -31,7 +35,7 @@ fun EffettuaPagamentoIngresso(cassaViewModel: CassaViewModel,displayViewModel: D
 
     }
 }
-fun EffettuaPagamentoUscita(valore:Double,transazioniRepository: TransazioniRepository,firebaseService: FirebaseService){
+fun EffettuaPagamentoUscita(valore:Double, transazioniRepository: TransazioniRepository, firebaseService: FirebaseService){
     Log.d("Debug", "Effettuapagetno inizio")
     if (valore > 0) {
         val nuovaTransazione= Transazione(

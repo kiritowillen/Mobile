@@ -3,12 +3,16 @@ package com.example.mobile.ui.screens.impostazioni
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.mobile.CassaViewModel
@@ -23,6 +27,7 @@ import com.example.mobile.ui.components.ContenitoreTransazioni
 import com.example.mobile.ui.components.ContenitoreTrasferimentoFondi
 import com.example.mobile.ui.components.ContenitoreMenuTenda
 import com.example.mobile.ui.components.ContenitoreModalita
+import com.example.mobile.ui.components.ContenitoreOmbreggiato
 
 
 @Composable
@@ -36,42 +41,42 @@ fun ImpostazioniScreen(
     transazioniViewModel : TransazioniViewModel,
     onLogOff: () -> Unit,
     firebaseService: FirebaseService,
+    isDarkTheme: Boolean,
+    onThemeToggle: () -> Unit
     ) {
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(Color.Blue),
-        contentAlignment = Alignment.Center
-    ) {
+    ContenitoreOmbreggiato(
+        modifier = Modifier
+            .fillMaxWidth(0.95f) // 95% larghezza
+            .fillMaxHeight(0.98f) // 90% altezza
+    ){
         Column(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.surface)
+                .padding(vertical = 8.dp)
         ) {
             val paddingVertical = 8.dp
             val paddingHorizontal = 16.dp
 
             ContenitoreTransazioni(
                 modifier = modifier
-                .weight(0.7f)
-                .fillMaxWidth()
-                .padding(horizontal = paddingHorizontal, vertical = paddingVertical),
+                    .weight(0.6f)
+                    .fillMaxWidth()
+                    //.background(MaterialTheme.colorScheme.surface)
+                    .padding(horizontal = paddingHorizontal, vertical = paddingVertical),
                 navigator=navigator,
                 transazioniRepository = transazioniRepository,
                 transazioniViewModel=transazioniViewModel,
             )
 
-            BottoneLogOff (
-                modifier = Modifier
-                    .weight(0.1f)
-                    .padding(horizontal = paddingHorizontal, vertical = paddingVertical),
-                firebaseService=firebaseService,
-                onLogOff = onLogOff,
-                )
 
             ContenitoreTrasferimentoFondi(
                 modifier = Modifier
                     .weight(0.1f)
                     .padding(horizontal = paddingHorizontal, vertical = paddingVertical),
-                navigator = navigator,)
+                navigator = navigator,
+                )
+
 
             ContenitoreMenuTenda(
                 modifier = Modifier
@@ -82,13 +87,22 @@ fun ImpostazioniScreen(
                 displayViewModel = displayViewModel,
             )
 
-
             ContenitoreModalita(
                 modifier = Modifier
                     .weight(0.1f)
                     .padding(horizontal = paddingHorizontal, vertical = paddingVertical),
+                isDarkTheme = isDarkTheme,
+                onThemeToggle = onThemeToggle,
+            )
+
+            BottoneLogOff (
+                modifier = Modifier
+                    //.clip(RoundedCornerShape(12.dp))
+                    .weight(0.1f)
+                    .padding(horizontal = paddingHorizontal, vertical = paddingVertical),
+                firebaseService=firebaseService,
+                onLogOff = onLogOff,
             )
         }
-
     }
 }

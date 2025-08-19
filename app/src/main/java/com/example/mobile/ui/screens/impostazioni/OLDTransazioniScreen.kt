@@ -19,7 +19,7 @@ import com.example.mobile.ui.screens.impostazioni.components.TransazioniList
 
 @RequiresApi(Build.VERSION_CODES.Q)
 @Composable
-fun TransazioniScreen(
+fun OldTransazioniScreen(
     modifier: Modifier=Modifier,
     transazioniViewModel : TransazioniViewModel,
     managerScambioValuta: ManagerScambioValuta,
@@ -33,29 +33,27 @@ fun TransazioniScreen(
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Top,
+            verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             // Riga alta 10%
             FiltroConDatePicker(
                 modifier = Modifier
-                .fillMaxWidth(1f)
+                .fillMaxWidth(0.98f)
                 .weight(0.12f)
+
                 .padding(horizontal = 8.dp, vertical = 4.dp),
                 transazioniViewModel = transazioniViewModel,
                 managerScambioValuta=managerScambioValuta,
             )
 
-            Spacer(modifier=Modifier
-                .weight(0.01f)
-            )
             // Colonna alta 90%
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(0.87f)
+                    .weight(0.88f)
                     .background(MaterialTheme.colorScheme.background),
-                verticalArrangement = Arrangement.Top,
+                verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 TransazioniList(transazioniViewModel = transazioniViewModel)

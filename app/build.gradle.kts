@@ -73,6 +73,8 @@ dependencies {
     //usato epr generare i qr code
     implementation ("com.google.zxing:core:3.5.3")
     implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    //usato per generare i PDF
+    implementation ("com.itextpdf:itext7-core:7.1.18") // versione stabile
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

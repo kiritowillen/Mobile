@@ -10,7 +10,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.mobile.NavigationViewModel
 import com.example.mobile.data.Screen
@@ -42,9 +44,10 @@ fun TopBar(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(56.dp)
+            .fillMaxHeight()
             //.padding(WindowInsets.statusBars.asPaddingValues())
-            .background(Color.Green)
+            .background(MaterialTheme.colorScheme.background)
+            //.background(Color.Red)
     ) {
         Row(
             modifier = Modifier
@@ -55,7 +58,7 @@ fun TopBar(
             // Pulsante sinistro, visibile solo se la condizione è vera
             Box(
                 modifier = Modifier
-                    .width(100.dp) // Fissa la larghezza a una percentuale, per esempio 80dp per il pulsante sinistro
+                    .fillMaxHeight(0.8f) // Fissa la larghezza a una percentuale, per esempio 80dp per il pulsante sinistro
             ) {
                 if (IndietroButton) {
                     BackButton(navigator)
@@ -73,13 +76,18 @@ fun TopBar(
                     .fillMaxHeight(),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "La mia App", color = Color.White, fontSize = 18.sp)
+                Text(
+                    text = "Convert",
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold
+                )
             }
 
             // Pulsante destro,
             Box(
                 modifier = Modifier
-                    .width(80.dp) // Fissa la larghezza a una percentuale, per esempio 80dp per il pulsante destro
+                    .fillMaxHeight(0.8f) // Fissa la larghezza a una percentuale, per esempio 80dp per il pulsante destro
             ) {
                 if(DeleteAllButton){
                     TrashButton(navigator=navigator,aggiornaTotale=aggiornaTotale, eliminaTutto = eliminaTutto)
