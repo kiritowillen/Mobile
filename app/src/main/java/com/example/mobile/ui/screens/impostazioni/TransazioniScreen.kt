@@ -8,13 +8,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.mobile.TransazioniViewModel
+import com.example.mobile.ViewModel.TransazioniViewModel
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 
 import androidx.compose.ui.unit.dp
-import com.example.mobile.ManagerScambioValuta
-import com.example.mobile.ui.components.FiltroConDatePicker
+import com.example.mobile.ServiceClasses.ManagerScambioValuta
+import com.example.mobile.ui.screens.impostazioni.components.FiltroConDatePicker
 import com.example.mobile.ui.screens.impostazioni.components.TransazioniList
 
 @RequiresApi(Build.VERSION_CODES.Q)

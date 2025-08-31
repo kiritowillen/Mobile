@@ -9,11 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.mobile.NavigationViewModel
+import com.example.mobile.ViewModel.NavigationViewModel
 import com.example.mobile.data.Screen
 import com.example.mobile.ui.screens.impostazioni.ImpostazioniScreen
 import com.example.mobile.ui.screens.impostazioni.TransazioniScreen
@@ -21,12 +20,12 @@ import com.example.mobile.ui.screens.impostazioni.TrasferimentoScreen
 import com.example.mobile.ui.screens.pagamento.PagamentoScreen
 import com.example.mobile.ui.screens.tastiera.CarrelloScreen
 import com.example.mobile.ui.screens.tastiera.TastieraScreen
-import com.example.mobile.CassaViewModel
-import com.example.mobile.DisplayViewModel
-import com.example.mobile.FirebaseService
-import com.example.mobile.ManagerScambioValuta
-import com.example.mobile.TransazioniRepository
-import com.example.mobile.TransazioniViewModel
+import com.example.mobile.ViewModel.CassaViewModel
+import com.example.mobile.ViewModel.DisplayViewModel
+import com.example.mobile.ServiceClasses.FirebaseService
+import com.example.mobile.ServiceClasses.ManagerScambioValuta
+import com.example.mobile.ServiceClasses.TransazioniRepository
+import com.example.mobile.ViewModel.TransazioniViewModel
 
 /*
 Il NavGraph è diviso in 3 sezioni e mi dice quali sono le mie route disponibili
@@ -41,7 +40,7 @@ fun AppNavGraph(
     navViewModel: NavigationViewModel,
     cassaViewModel: CassaViewModel,
     displayViewModel: DisplayViewModel,
-    trasazioniRepository:TransazioniRepository,
+    trasazioniRepository: TransazioniRepository,
     managerScambioValuta: ManagerScambioValuta,
     transazioniViewModel : TransazioniViewModel,
     onLogOff: () -> Unit,

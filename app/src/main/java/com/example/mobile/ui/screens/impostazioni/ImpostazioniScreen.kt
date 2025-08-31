@@ -1,33 +1,28 @@
 package com.example.mobile.ui.screens.impostazioni
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.mobile.CassaViewModel
-import com.example.mobile.DisplayViewModel
-import com.example.mobile.FirebaseService
-import com.example.mobile.ManagerScambioValuta
-import com.example.mobile.TransazioniRepository
-import com.example.mobile.TransazioniViewModel
+import com.example.mobile.ViewModel.CassaViewModel
+import com.example.mobile.ViewModel.DisplayViewModel
+import com.example.mobile.ServiceClasses.FirebaseService
+import com.example.mobile.ServiceClasses.ManagerScambioValuta
+import com.example.mobile.ServiceClasses.TransazioniRepository
+import com.example.mobile.ViewModel.TransazioniViewModel
 import com.example.mobile.navigation.Navigator
-import com.example.mobile.ui.components.BottoneLogOff
-import com.example.mobile.ui.components.ContenitoreTransazioni
-import com.example.mobile.ui.components.ContenitoreTrasferimentoFondi
-import com.example.mobile.ui.components.ContenitoreMenuTenda
-import com.example.mobile.ui.components.ContenitoreModalita
-import com.example.mobile.ui.components.ContenitoreOmbreggiato
+import com.example.mobile.ui.screens.impostazioni.components.BottoneLogOff
+import com.example.mobile.ui.screens.impostazioni.components.ContenitoreTransazioni
+import com.example.mobile.ui.screens.impostazioni.components.ContenitoreTrasferimentoFondi
+import com.example.mobile.ui.screens.impostazioni.components.ContenitoreMenuTenda
+import com.example.mobile.ui.screens.impostazioni.components.ContenitoreModalita
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
 
 
 @Composable
@@ -36,7 +31,7 @@ fun ImpostazioniScreen(
     navigator: Navigator,
     cassaViewModel: CassaViewModel,
     displayViewModel: DisplayViewModel,
-    transazioniRepository:TransazioniRepository,
+    transazioniRepository: TransazioniRepository,
     managerScambioValuta: ManagerScambioValuta,
     transazioniViewModel : TransazioniViewModel,
     onLogOff: () -> Unit,

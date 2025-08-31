@@ -1,17 +1,13 @@
-package com.example.mobile
+package com.example.mobile.ServiceClasses
 
-import android.R.id
 import android.content.Context
 import android.util.Log
-import com.example.mobile.data.Articolo
 import com.example.mobile.data.Transazione
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
 import java.util.Calendar
 import java.util.Date
-import java.util.UUID
 import java.text.SimpleDateFormat
 import java.util.Locale
 

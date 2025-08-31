@@ -12,12 +12,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mobile.CassaViewModel
-import com.example.mobile.DisplayViewModel
+import com.example.mobile.ViewModel.CassaViewModel
+import com.example.mobile.ViewModel.DisplayViewModel
 import com.example.mobile.funzioni.EffettuaPagamentoIngresso
-import com.example.mobile.TransazioniRepository
-import com.example.mobile.FirebaseService
-import com.example.mobile.ui.components.ContenitoreOmbreggiato
+import com.example.mobile.ServiceClasses.TransazioniRepository
+import com.example.mobile.ServiceClasses.FirebaseService
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
 
 
 @Composable

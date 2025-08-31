@@ -3,7 +3,6 @@ package com.example.mobile.navigation
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -12,8 +11,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.mobile.ExternalNavigationViewModel
-import com.example.mobile.FirebaseService
+import com.example.mobile.ViewModel.ExternalNavigationViewModel
+import com.example.mobile.ServiceClasses.FirebaseService
 import com.example.mobile.ui.Applicazione
 import com.example.mobile.ui.screens.login.LoginScreen
 

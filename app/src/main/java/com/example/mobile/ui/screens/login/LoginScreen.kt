@@ -17,8 +17,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mobile.FirebaseService
-import com.example.mobile.ui.components.ContenitoreOmbreggiato
+import com.example.mobile.ServiceClasses.FirebaseService
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
 
 @Composable
 fun LoginScreen(

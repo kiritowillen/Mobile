@@ -1,4 +1,4 @@
-package com.example.mobile.ui.components
+package com.example.mobile.ui.screens.impostazioni.components
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,11 +16,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.mobile.R
-import com.example.mobile.TransazioniRepository
-import com.example.mobile.TransazioniViewModel
+import com.example.mobile.ServiceClasses.TransazioniRepository
+import com.example.mobile.ViewModel.TransazioniViewModel
 import com.example.mobile.data.Screen
 import com.example.mobile.navigation.Navigator
-import com.example.mobile.ui.screens.impostazioni.components.RigaTransazione
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
 
 
 @Composable

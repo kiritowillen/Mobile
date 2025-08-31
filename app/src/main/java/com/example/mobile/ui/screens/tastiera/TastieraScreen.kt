@@ -10,12 +10,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.example.mobile.CassaViewModel
-import com.example.mobile.DisplayViewModel
+import com.example.mobile.ViewModel.CassaViewModel
+import com.example.mobile.ViewModel.DisplayViewModel
 import com.example.mobile.ui.screens.tastiera.components.Dispaly
 import com.example.mobile.ui.screens.tastiera.components.TastierinoNumerico
-import com.example.mobile.ManagerScambioValuta
-import com.example.mobile.ui.components.ContenitoreOmbreggiato
+import com.example.mobile.ServiceClasses.ManagerScambioValuta
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
 
 @Composable
 fun TastieraScreen(

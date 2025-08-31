@@ -1,14 +1,10 @@
-package com.example.mobile
+package com.example.mobile.ViewModel
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.mobile.data.Articolo
-import com.example.mobile.data.Carrello
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 
 class CassaViewModel : ViewModel() {
     private val _prodotti = MutableStateFlow<List<Articolo>>(emptyList())

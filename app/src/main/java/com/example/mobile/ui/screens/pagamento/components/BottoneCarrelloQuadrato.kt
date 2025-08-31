@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import com.example.mobile.R
 import com.example.mobile.data.Screen
 import com.example.mobile.navigation.Navigator
-import com.example.mobile.ui.components.ContenitoreOmbreggiato
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
 
 
 @Composable

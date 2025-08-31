@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.example.mobile.ui.components.ContenitoreOmbreggiato
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
 
 @Composable
 fun NumeroButton(

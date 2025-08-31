@@ -1,4 +1,4 @@
-package com.example.mobile.ui.components
+package com.example.mobile.ui.screens.impostazioni.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -9,15 +9,14 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.mobile.CassaViewModel
-import androidx.compose.runtime.collectAsState // ✅ import corretto
+import com.example.mobile.ViewModel.CassaViewModel
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.example.mobile.DisplayViewModel
-import com.example.mobile.ManagerScambioValuta
+import com.example.mobile.ViewModel.DisplayViewModel
+import com.example.mobile.ServiceClasses.ManagerScambioValuta
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
 
 @Composable
 fun ContenitoreMenuTenda(

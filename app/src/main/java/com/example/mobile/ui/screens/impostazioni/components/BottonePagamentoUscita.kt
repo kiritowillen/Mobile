@@ -1,4 +1,4 @@
-package com.example.mobile.ui.components
+package com.example.mobile.ui.screens.impostazioni.components
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -11,11 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.mobile.CassaViewModel
-import com.example.mobile.DisplayViewModel
-import com.example.mobile.TransazioniRepository
+import com.example.mobile.ViewModel.CassaViewModel
+import com.example.mobile.ViewModel.DisplayViewModel
+import com.example.mobile.ServiceClasses.TransazioniRepository
 import com.example.mobile.funzioni.EffettuaPagamentoUscita
-import com.example.mobile.FirebaseService
+import com.example.mobile.ServiceClasses.FirebaseService
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
 
 
 @Composable
@@ -28,7 +29,7 @@ fun BottonePagamentoUscita(
     valore:Double,
     firebaseService: FirebaseService,
 
-) {
+    ) {
     ContenitoreOmbreggiato(
         modifier = modifier
         .background(MaterialTheme.colorScheme.primary)

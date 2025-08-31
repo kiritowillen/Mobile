@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.mobile.CassaViewModel
+import com.example.mobile.ViewModel.CassaViewModel
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -14,18 +14,18 @@ import com.example.mobile.navigation.Navigator
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import com.example.mobile.DisplayViewModel
-import com.example.mobile.FirebaseService
-import com.example.mobile.ManagerScambioValuta
-import com.example.mobile.TransazioniRepository
+import com.example.mobile.ViewModel.DisplayViewModel
+import com.example.mobile.ServiceClasses.FirebaseService
+import com.example.mobile.ServiceClasses.ManagerScambioValuta
+import com.example.mobile.ServiceClasses.TransazioniRepository
 import com.example.mobile.ui.screens.pagamento.components.BottoneCarrelloQuadrato
 import com.example.mobile.ui.screens.pagamento.components.BottonePagamentoIngresso
 import com.example.mobile.ui.screens.pagamento.components.DisplayTotale
-import com.example.mobile.ui.components.RigaPulsantiPagamento
+import com.example.mobile.ui.sharedComponents.RigaPulsantiPagamento
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.draw.clip
-import com.example.mobile.ui.components.ContenitoreOmbreggiato
-import com.example.mobile.ui.components.ContenitoreQR
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
+import com.example.mobile.ui.sharedComponents.ContenitoreQR
 
 @Composable
 fun PagamentoScreen(

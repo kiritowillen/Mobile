@@ -8,13 +8,8 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import androidx.annotation.RequiresApi
-import com.example.mobile.ManagerScambioValuta
+import com.example.mobile.ServiceClasses.ManagerScambioValuta
 import com.example.mobile.data.Transazione
-import com.itextpdf.kernel.pdf.PdfWriter
-import com.itextpdf.kernel.pdf.PdfDocument
-import com.itextpdf.layout.Document
-import com.itextpdf.layout.element.Paragraph
-import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale

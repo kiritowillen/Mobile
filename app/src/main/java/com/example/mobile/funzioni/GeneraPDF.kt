@@ -1,13 +1,6 @@
 package com.example.mobile.funzioni
 
-import android.content.ContentValues
-import android.content.Context
-import android.os.Build
-import android.os.Environment
-import android.provider.MediaStore
-import android.util.Log
-import androidx.annotation.RequiresApi
-import com.example.mobile.ManagerScambioValuta
+import com.example.mobile.ServiceClasses.ManagerScambioValuta
 import com.example.mobile.data.Transazione
 import com.itextpdf.kernel.pdf.PdfWriter
 import com.itextpdf.kernel.pdf.PdfDocument
@@ -17,13 +10,11 @@ import java.io.ByteArrayOutputStream
 import com.itextpdf.kernel.font.PdfFontFactory
 import com.itextpdf.layout.property.TextAlignment
 import com.itextpdf.layout.property.UnitValue
-import com.itextpdf.layout.element.Text
 import java.text.SimpleDateFormat
 import java.util.*
 import com.itextpdf.layout.element.Table
 import com.itextpdf.layout.element.Cell
 import com.itextpdf.layout.borders.Border
-import com.itextpdf.layout.property.VerticalAlignment
 
 // Funzione che genera un PDF e lo restituisce come ByteArray
 fun generaPdf(

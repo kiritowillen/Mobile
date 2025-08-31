@@ -1,10 +1,10 @@
 package com.example.mobile.funzioni
 
 import android.util.Log
-import com.example.mobile.CassaViewModel
-import com.example.mobile.DisplayViewModel
-import com.example.mobile.FirebaseService
-import com.example.mobile.TransazioniRepository
+import com.example.mobile.ViewModel.CassaViewModel
+import com.example.mobile.ViewModel.DisplayViewModel
+import com.example.mobile.ServiceClasses.FirebaseService
+import com.example.mobile.ServiceClasses.TransazioniRepository
 import com.example.mobile.data.Transazione
 import java.util.Calendar
 import java.util.Date

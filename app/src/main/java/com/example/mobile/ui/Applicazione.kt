@@ -3,36 +3,29 @@ package com.example.mobile.ui
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.mobile.CassaViewModel
-import com.example.mobile.DisplayViewModel
-import com.example.mobile.FirebaseService
-import com.example.mobile.ManagerScambioValuta
-import com.example.mobile.NavigationViewModel
-import com.example.mobile.TransazioniRepository
-import com.example.mobile.TransazioniViewModel
+import com.example.mobile.ViewModel.CassaViewModel
+import com.example.mobile.ViewModel.DisplayViewModel
+import com.example.mobile.ServiceClasses.FirebaseService
+import com.example.mobile.ServiceClasses.ManagerScambioValuta
+import com.example.mobile.ViewModel.NavigationViewModel
+import com.example.mobile.ServiceClasses.TransazioniRepository
+import com.example.mobile.ViewModel.TransazioniViewModel
 import com.example.mobile.navigation.AppNavGraph
 import com.example.mobile.navigation.Navigator
-import com.example.mobile.ui.components.BottomBar
-import com.example.mobile.ui.components.TopBar
+import com.example.mobile.ui.sharedComponents.BottomBar
+import com.example.mobile.ui.sharedComponents.TopBar
 
 @RequiresApi(Build.VERSION_CODES.Q)
 @Composable
@@ -45,7 +38,7 @@ fun Applicazione(
     val navController = rememberNavController()
     val navigator = Navigator(navController)
     val navigationViewModel: NavigationViewModel = viewModel()
-    val cassaViewModel: CassaViewModel= viewModel();
+    val cassaViewModel: CassaViewModel = viewModel();
     val displayViewModel: DisplayViewModel = viewModel()
 
     //creazione classe per egstione transazioni

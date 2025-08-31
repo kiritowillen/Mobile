@@ -18,16 +18,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import com.example.mobile.CassaViewModel
+import com.example.mobile.ViewModel.CassaViewModel
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.collectAsState
-import com.example.mobile.DisplayViewModel
+import com.example.mobile.ViewModel.DisplayViewModel
 
 import androidx.compose.ui.text.TextStyle
-import com.example.mobile.ManagerScambioValuta
+import com.example.mobile.ServiceClasses.ManagerScambioValuta
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 

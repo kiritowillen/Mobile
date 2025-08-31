@@ -18,8 +18,8 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import com.example.mobile.CassaViewModel
-import com.example.mobile.ui.components.ContenitoreOmbreggiato
+import com.example.mobile.ViewModel.CassaViewModel
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
 
 
 @Composable

@@ -1,17 +1,15 @@
-package com.example.mobile
+package com.example.mobile.ViewModel
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mobile.TransazioniRepository
+import com.example.mobile.ServiceClasses.TransazioniRepository
 import com.example.mobile.data.Transazione
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import java.io.File
 import androidx.compose.runtime.State
 
 class TransazioniViewModel(

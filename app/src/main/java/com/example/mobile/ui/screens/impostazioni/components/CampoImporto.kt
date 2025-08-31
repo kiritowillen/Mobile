@@ -1,4 +1,4 @@
-package com.example.mobile.ui.components
+package com.example.mobile.ui.screens.impostazioni.components
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -14,6 +14,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
 
 @Composable
 fun CampoImporto(

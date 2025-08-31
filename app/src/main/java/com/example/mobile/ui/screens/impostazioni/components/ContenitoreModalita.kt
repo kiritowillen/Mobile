@@ -1,4 +1,4 @@
-package com.example.mobile.ui.components
+package com.example.mobile.ui.screens.impostazioni.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -10,11 +10,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
 
 @Composable
 fun ContenitoreModalita(
@@ -37,8 +37,8 @@ fun ContenitoreModalita(
             Text(
                 color = MaterialTheme.colorScheme.onPrimary,
                 text = "Modalità",
-                style = androidx.compose.ui.text.TextStyle(
-                    fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                style = TextStyle(
+                    fontWeight = FontWeight.Bold,
                     fontSize = 20.sp
                 ),
             )
@@ -46,8 +46,8 @@ fun ContenitoreModalita(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     color = MaterialTheme.colorScheme.onPrimary,
-                    style = androidx.compose.ui.text.TextStyle(
-                        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                    style = TextStyle(
+                        fontWeight = FontWeight.Bold,
                         fontSize = 20.sp
                     ),
                     text = if (!isDarkTheme) "Giorno" else "Notte") // mostra "Giorno" se isDarkTheme = false

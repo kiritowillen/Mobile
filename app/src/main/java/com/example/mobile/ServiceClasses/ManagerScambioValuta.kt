@@ -1,4 +1,4 @@
-package com.example.mobile
+package com.example.mobile.ServiceClasses
 
 
 import androidx.compose.runtime.State
@@ -14,8 +14,8 @@ class ManagerScambioValuta {
     private val _conversionRates = mutableStateOf(
         mapOf(
             "SATS" to 1.0,
-            "EUR" to 0.0001,
-            "USD" to 0.0002,
+            "EUR" to 0.000989,
+            "USD" to 0.001153,
             "BTC" to 0.00000001
         )
     )

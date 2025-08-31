@@ -19,18 +19,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.mobile.CassaViewModel
-import com.example.mobile.DisplayViewModel
-import com.example.mobile.FirebaseService
-import com.example.mobile.ManagerScambioValuta
-import com.example.mobile.TransazioniRepository
+import com.example.mobile.ViewModel.CassaViewModel
+import com.example.mobile.ViewModel.DisplayViewModel
+import com.example.mobile.ServiceClasses.FirebaseService
+import com.example.mobile.ServiceClasses.ManagerScambioValuta
+import com.example.mobile.ServiceClasses.TransazioniRepository
 import com.example.mobile.navigation.Navigator
-import com.example.mobile.ui.components.BottonePagamentoUscita
-import com.example.mobile.ui.components.CampoImporto
-import com.example.mobile.ui.components.ContenitoreOmbreggiato
-import com.example.mobile.ui.components.ContenitoreQR
+import com.example.mobile.ui.screens.impostazioni.components.BottonePagamentoUscita
+import com.example.mobile.ui.screens.impostazioni.components.CampoImporto
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
+import com.example.mobile.ui.sharedComponents.ContenitoreQR
 import com.example.mobile.ui.screens.pagamento.components.DisplayTotale
-import com.example.mobile.ui.components.RigaPulsantiPagamento
+import com.example.mobile.ui.sharedComponents.RigaPulsantiPagamento
 
 @Composable
 fun TrasferimentoScreen(

@@ -9,9 +9,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalDensity
-import com.example.mobile.TransazioniViewModel
+import com.example.mobile.ViewModel.TransazioniViewModel
 import androidx.compose.material3.MaterialTheme
-import com.example.mobile.ui.components.ContenitoreOmbreggiato
+import com.example.mobile.ui.sharedComponents.ContenitoreOmbreggiato
 
 
 @Composable
